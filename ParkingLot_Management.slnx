@@ -1,0 +1,9 @@
+<Solution>
+  <Project Path="ParkingLot.API/ParkingLot.API.csproj" Id="2420caab-23fa-48d7-95d8-e7d899c740d6" />
+  <Project Path="ParkingLot.Core/ParkingLot.Core.csproj" Id="be2405de-69cb-4862-ab13-9a22c7120373" />
+  <Project Path="ParkingLot.Data/ParkingLot.Data.csproj" Id="5bb52d9f-0548-4043-bef1-c662efb64cc8" />
+  <Project Path="ParkingLot.ML/ParkingLot.ML.pyproj" Type="888888a0-9f3d-457c-b088-3a5042f75d52" Id="92e86bb3-932f-4be1-a527-ae18e2fedb77">
+    <Build Project="false" />
+  </Project>
+  <Project Path="ParkingLot.WPF/ParkingLot.WPF.csproj" Id="95302db2-5cd6-4eae-93cb-4bdfc36e8ed3" />
+</Solution>

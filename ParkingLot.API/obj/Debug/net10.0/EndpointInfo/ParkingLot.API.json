@@ -1,0 +1,72 @@
+{
+  "openapi": "3.1.1",
+  "info": {
+    "title": "ParkingLot.API | v1",
+    "version": "1.0.0"
+  },
+  "servers": [
+    {
+      "url": "https://localhost:7077"
+    },
+    {
+      "url": "http://localhost:5291"
+    }
+  ],
+  "paths": {
+    "/api/Plate/detect": {
+      "post": {
+        "tags": [
+          "Plate"
+        ],
+        "requestBody": {
+          "content": {
+            "multipart/form-data": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "image": {
+                    "$ref": "#/components/schemas/IFormFile"
+                  }
+                }
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/api/Values/hello": {
+      "get": {
+        "tags": [
+          "Values"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    }
+  },
+  "components": {
+    "schemas": {
+      "IFormFile": {
+        "type": "string",
+        "format": "binary"
+      }
+    }
+  },
+  "tags": [
+    {
+      "name": "Plate"
+    },
+    {
+      "name": "Values"
+    }
+  ]
+}
