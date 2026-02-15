@@ -1,3 +1,5 @@
+# ! Currently Working On !
+
 # GeniusPark_ParkingLot-Management
 GeniusPark is a enterprise desktop program designed for companies to manage parking lots. 
 The program simulates a real-world parkinglot attendant workflow with licence plate detecting by taken car image and auto pricing by park time.
