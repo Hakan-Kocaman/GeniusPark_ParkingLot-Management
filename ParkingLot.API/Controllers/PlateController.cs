@@ -1,11 +1,14 @@
 ﻿using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using ParkingLot.API.Services;
+using ParkingLot.Core;
+using System.Text.Json;
+using System.Text.Json.Nodes;
 
 namespace ParkingLot.API.Controllers
 {
     [ApiController]
-    [Route("api/[controller]")]
+    [Route("api/plate")]
     public class PlateController : ControllerBase
     {
         private readonly PlateService _plateService;
@@ -14,16 +17,11 @@ namespace ParkingLot.API.Controllers
         {
             _plateService = plateService;
         }
-
         [HttpPost("detect")]
-        public async Task<IActionResult> DetectPlate(IFormFile image)
+        public async Task<IActionResult> Detect(IFormFile file)
         {
-            if (image == null || image.Length == 0)
-                return BadRequest("Image Empty");
-
-            var plate = await _plateService.DetectPlate(image);
-
-            return Ok(plate);
+            var plate = await _plateService.DetectPlate(file);
+            return Ok(new { plate = plate });
         }
     }
 

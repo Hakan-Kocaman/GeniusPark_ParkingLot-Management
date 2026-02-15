@@ -1,5 +1,5 @@
 
 
 
-def Predict(image_bytes):
-    return "selam"
+def Predict(file):
+    return file.filename

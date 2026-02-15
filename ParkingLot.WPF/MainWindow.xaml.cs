@@ -6,6 +6,7 @@ using ParkingLot.Core;
 using System.IO;
 using System.Net.Http;
 using System.Text;
+using System.Text.Json;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Data;
@@ -26,13 +27,14 @@ namespace ParkingLot.WPF
     public partial class MainWindow : Window
     {
         private readonly PlateService _plateService;
+        private readonly HttpClient httpClient;
         public MainWindow()
         {
             InitializeComponent();
 
-            var httpClient = new HttpClient
+             httpClient = new HttpClient
             {
-                BaseAddress = new Uri("https://localhost:5000/")
+                BaseAddress = new Uri("http://localhost:5000/")
             };
 
             _plateService = new PlateService(httpClient);
@@ -44,27 +46,36 @@ namespace ParkingLot.WPF
         {
             var openFileDialog = new Microsoft.Win32.OpenFileDialog();
             openFileDialog.Filter = "Image files (*.png;*.jpg)|*.png;*.jpg";
+            if (openFileDialog.ShowDialog() != true)
+            { return; }
 
-            if (openFileDialog.ShowDialog() == true)
-            {
+
                 var filePath = openFileDialog.FileName;
                 var file = CreateFormFile(filePath);
 
                 try
                 {
-                    
-                    string plate = await _plateService.DetectPlate(file);
-                    MessageBox.Show("Plaka: " + plate);
+                    using var content = new MultipartFormDataContent();
+                    using var stream = File.OpenRead(filePath);
+
+                    content.Add(new StreamContent(stream), "file",file.FileName);
+
+                    var response = await httpClient.PostAsync("api/plate/detect", content);
+
+                    var result = await response.Content.ReadAsStringAsync();
+                
+
+                MessageBox.Show("Plaka: " + result);
                 }
                 catch (Exception ex)
                 {
-                    MessageBox.Show("Hata: " + ex.Message);
+                    MessageBox.Show("C# Error: " + ex.Message);
                     if (ex.InnerException != null)
                         MessageBox.Show(ex.InnerException.Message);
                 }
 
 
-            }
+            
 
 
 

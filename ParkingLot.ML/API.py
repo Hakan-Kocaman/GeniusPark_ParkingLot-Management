@@ -6,17 +6,17 @@ import uvicorn
 
 app = FastAPI()
 
-@app.post("api/Plate/detect")
+@app.post("/api/plate/detect")
 async def Detect(file: UploadFile = File(...)):
     try:
-        contents = await file.read() 
-        plate = Predict(contents)
-        await file.close()     
 
-        return {"plate": plate}
+  
+
+        return {"plate": file.filename}
     
     except Exception as e:
-        return JSONResponse(content={"error": str(e)}, status_code=500)
+        print(f"Error: {str(e)}")
+        return JSONResponse(content={"py error": str(e)}, status_code=500)
 
 
 if __name__ == "__main__":
