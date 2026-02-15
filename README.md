@@ -41,4 +41,8 @@ Developed with C#, Python and different ml models.
  - Display Bills In The Stack Panel (Active/non-Active)
 
 
+![C#](https://img.shields.io/badge/C%23-.NET-green)
+![Python](https://img.shields.io/badge/Python-FastAPI-blue)
+
+
  
