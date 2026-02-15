@@ -3,7 +3,8 @@ GeniusPark is a enterprise desktop program designed for companies to manage park
 The program simulates a real-world parkinglot attendant workflow with licence plate detecting by taken car image and auto pricing by park time.
 Made on simple user interface for ease of use.
 Developed with C#, Python and different ml models.
-
+---
+## Currently Working On
 ---
 
 ## Features
